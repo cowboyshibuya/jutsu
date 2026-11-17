@@ -1,0 +1,16 @@
+{
+  "name": "jutsu",
+  "owner": {
+    "name": "cowboyshibuya"
+  },
+  "metadata": {
+    "description": "Jutsu: agent skills for building intuitive, minimal professional software."
+  },
+  "plugins": [
+    {
+      "name": "jutsu",
+      "source": "./",
+      "description": "Personal agent jutsu: a working-style router, playbooks and taste for professional product interfaces."
+    }
+  ]
+}

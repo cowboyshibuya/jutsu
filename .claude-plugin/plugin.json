@@ -1,0 +1,7 @@
+{
+  "name": "jutsu",
+  "version": "0.1.0",
+  "description": "Personal agent jutsu: a working-style router, playbooks and taste for professional product interfaces.",
+  "author": { "name": "cowboyshibuya" },
+  "skills": "./jutsu/"
+}

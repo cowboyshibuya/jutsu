@@ -1,0 +1,4 @@
+# Local run configs with machine-specific paths
+.claude/
+
+.DS_Store
