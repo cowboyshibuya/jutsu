@@ -10,6 +10,7 @@ This is the operating manual: how the pieces fit, what to type, and how the syst
 │   cowboy-mode (router)                    taste jutsu                         │
 │   ├─ playbooks/feature-ui                 ├─ explicit-titles                  │
 │   ├─ playbooks/bug-fix                    ├─ adaptive-density                 │
+│   │                                       ├─ sortable-tables                  │
 │   ├─ playbooks/ui-review      ── uses ──▶ ├─ showcase                         │
 │   ├─ playbooks/session-pickup             └─ agent-ready-site                 │
 │   └─ playbooks/shipping                                                       │
@@ -160,7 +161,7 @@ A new or changed jutsu is not done until it has reviewed real code. Every jutsu 
    claude --plugin-dir . plugin details jutsu
    ```
 
-   The descriptions load into every session (about 850 tokens for five jutsu today); the body loads only when used (about 2–2.5k tokens each).
+   The descriptions load into every session (about 1,000 tokens for six jutsu today); the body loads only when used (about 2–2.5k tokens each).
 6. **Add it** to the router's list of taste jutsu and to the README table.
 7. **Test it on a real app** before trusting it.
 
@@ -169,14 +170,13 @@ A new or changed jutsu is not done until it has reviewed real code. Every jutsu 
 ### Built
 
 - Router and five playbooks, from 289 of your Tomcabs messages.
-- Taste jutsu: explicit-titles, adaptive-density, showcase, agent-ready-site.
+- Taste jutsu: explicit-titles, adaptive-density, sortable-tables, showcase, agent-ready-site.
 - Plugin and marketplace manifests that validate.
 
 ### Planned
 
 | Next | Why |
 | --- | --- |
-| `sortable-tables` | Every table sorts, with a visible sort cue; mined three times |
 | `say-less` | Short labels, data written for people, one word per concept |
 | `status-badges` | Status as icon plus tooltip on one colour map; mined six times |
 | `quiet-interface` | The philosophy: fewer primary choices, power behind a simple surface; write last |
