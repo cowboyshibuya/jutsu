@@ -8,7 +8,7 @@ disable-model-invocation: true
 
 The method lives in the jutsu, the shared code in the foundation registry, and only the product's own decisions in the project. This jutsu installs the first two and asks for the third.
 
-Templates are in `../../foundation/templates/` from this file. The registry is served from `FOUNDATION_URL` (default `https://raw.githubusercontent.com/cowboyshibuya/jutsu/main/foundation/r`); before it is published, build it with `FOUNDATION_URL=http://localhost:4100 node foundation/scripts/build-registry.mjs` and serve `foundation/` on that port.
+Templates are in `../../foundation/templates/` from this file. The registry is served from `FOUNDATION_URL` (default `https://raw.githubusercontent.com/cowboyshibuya/jutsu/main/foundation/r`); to test a local change, build it with `FOUNDATION_URL=http://127.0.0.1:4100/r node foundation/scripts/build-registry.mjs` and serve `foundation/` on that port (use `127.0.0.1`, not `localhost`, which can resolve to IPv6 and miss an IPv4-only server). Rebuild without `FOUNDATION_URL` before committing.
 
 ## Hard rules
 
@@ -30,7 +30,7 @@ Templates are in `../../foundation/templates/` from this file. The registry is s
    - the blocks the product needs: `page-header`, `metric`, `empty-state`.
    If shadcn is not set up, ask before running `shadcn init`.
 4. **Wire the tokens.** Import `primitives.css`, `semantic.css`, `shadcn.css`, then `tailwind.css` after `@import "tailwindcss"` in the global stylesheet (with permission if it is protected). Replace the colour block `shadcn init` wrote with nothing: `shadcn.css` now provides it. Write the person's answers into `primitives.css` and remove those `@decide` marks.
-5. **Wire the check.** Add `"check:tokens": "node scripts/check-tokens.mjs <component dirs>"` to `package.json`. Run it.
+5. **Wire the check.** Add `"check:tokens": "node scripts/check-tokens.mjs <component dirs>"` to `package.json` (shadcn's generated `components/ui` is skipped until the project customises it; `--include-ui` adds it). Run it.
    - New project, or it passes: add it to the full check command.
    - Existing project with failures: report the count by file, add it to the full check only if the person agrees, and offer to migrate the worst files first. Do not mass-edit without a yes.
 6. **Write the docs** from the templates. Missing file: create it filled with the answers. Existing file: add only missing sections (Tokens, Colour carries meaning, Blocks, Open decisions, Differences from the jutsu) and leave the rest as it is. `CLAUDE.md` is one line, `@AGENTS.md`, unless it already has content.

@@ -4,6 +4,10 @@
  *
  *   node checks/check-tokens.mjs [dirs...]          check components (default: app components src)
  *   node checks/check-tokens.mjs --decisions        list values marked @decide in the token files
+ *   node checks/check-tokens.mjs --include-ui       also check shadcn's generated components/ui
+ *
+ * shadcn's generated components (components/ui) are skipped by default: they follow the theme
+ * through shadcn.css. Include them once the project has customised them.
  *
  * Flags, outside the token files:
  *   - raw colours: #hex, rgb(), hsl(), oklch() literals
@@ -65,8 +69,14 @@ const rules = [
   { test: PRIMITIVE, message: "primitive used directly; use its semantic token" },
 ];
 
-const dirs = args.length ? args : ["app", "components", "src"];
-const files = dirs.flatMap((dir) => walk(join(root, dir))).filter((file) => !TOKEN_FILE.test(file));
+const named = args.filter((arg) => !arg.startsWith("--"));
+const dirs = named.length ? named : ["app", "components", "src"];
+const includeUi = args.includes("--include-ui");
+const files = dirs
+  .filter((dir) => !dir.startsWith("--"))
+  .flatMap((dir) => walk(join(root, dir)))
+  .filter((file) => !TOKEN_FILE.test(file))
+  .filter((file) => includeUi || !/[/\\]components[/\\]ui[/\\]/.test(file));
 const failures = [];
 
 for (const file of files) {

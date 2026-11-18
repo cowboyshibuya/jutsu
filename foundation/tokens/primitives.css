@@ -25,9 +25,13 @@
 
   /* Color: meaning. Used only through status and action tokens, never as decoration. */
   --blue-500: #3b82f6;
+  --blue-600: #2563eb;
   --green-500: #22c55e;
+  --green-700: #15803d;
   --amber-500: #f59e0b;
+  --amber-700: #b45309;
   --red-500: #ef4444;
+  --red-600: #dc2626;
 
   /* @decide: the product's accent (brand) colour. Ask before choosing one. */
   --accent-500: var(--blue-500);

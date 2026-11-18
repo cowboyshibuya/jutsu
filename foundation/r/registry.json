@@ -40,7 +40,7 @@
         {
           "path": "checks/check-tokens.mjs",
           "type": "registry:file",
-          "target": "scripts/check-tokens.mjs"
+          "target": "~/scripts/check-tokens.mjs"
         }
       ]
     },

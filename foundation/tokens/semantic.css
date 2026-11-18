@@ -36,17 +36,18 @@
   --action-accent: var(--accent-500);
   --focus-ring: var(--blue-500);
 
-  /* Status: each tone is a set, so a badge, banner or dot never mixes its own */
-  --status-success: var(--green-500);
+  /* Status: each tone is a set, so a badge, banner or dot never mixes its own.
+     The ink is darker on light backgrounds so text and icons stay readable (4.5:1). */
+  --status-success: light-dark(var(--green-700), var(--green-500));
   --status-success-bg: color-mix(in oklch, var(--green-500) 12%, transparent);
   --status-success-border: color-mix(in oklch, var(--green-500) 30%, transparent);
-  --status-warning: var(--amber-500);
+  --status-warning: light-dark(var(--amber-700), var(--amber-500));
   --status-warning-bg: color-mix(in oklch, var(--amber-500) 12%, transparent);
   --status-warning-border: color-mix(in oklch, var(--amber-500) 30%, transparent);
-  --status-error: var(--red-500);
+  --status-error: light-dark(var(--red-600), var(--red-500));
   --status-error-bg: color-mix(in oklch, var(--red-500) 12%, transparent);
   --status-error-border: color-mix(in oklch, var(--red-500) 30%, transparent);
-  --status-running: var(--blue-500);
+  --status-running: light-dark(var(--blue-600), var(--blue-500));
   --status-running-bg: color-mix(in oklch, var(--blue-500) 12%, transparent);
   --status-running-border: color-mix(in oklch, var(--blue-500) 30%, transparent);
   --status-neutral: var(--text-muted);

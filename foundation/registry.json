@@ -21,7 +21,7 @@
       "title": "Token check",
       "description": "Fails on raw colours, raw sizes, palette classes and primitives used in components; lists @decide values.",
       "files": [
-        { "path": "checks/check-tokens.mjs", "type": "registry:file", "target": "scripts/check-tokens.mjs" }
+        { "path": "checks/check-tokens.mjs", "type": "registry:file", "target": "~/scripts/check-tokens.mjs" }
       ]
     },
     {
