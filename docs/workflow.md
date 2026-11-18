@@ -118,7 +118,7 @@ A correction you give twice is a candidate. One-off taste calls are not.
 
 ### 2. Mine your sessions
 
-Ask an agent to read your recent sessions for a project and group your corrections into classes, as was done for Tomcabs ([docs/mining/tomcabs-2026-11.md](mining/tomcabs-2026-11.md)). Keep classes that appeared at least twice.
+Ask an agent to read your recent sessions for a project and group your corrections into classes, as was done for Tomcabs to build the router (those notes stay private, in `docs/mining/`, which Git ignores). Keep classes that appeared at least twice.
 
 ### 3. Encode each class at the strongest level that works
 

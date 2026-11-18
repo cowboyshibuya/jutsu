@@ -2,3 +2,6 @@
 .claude/
 
 .DS_Store
+
+# Session-mining notes: private, kept on this machine
+docs/mining/
