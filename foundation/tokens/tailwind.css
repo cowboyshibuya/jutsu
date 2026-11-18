@@ -1,0 +1,69 @@
+/*
+ * Tailwind v4 names for the semantic tokens, so components write `bg-surface text-ink-muted
+ * rounded-card` instead of raw values. Import after primitives.css and semantic.css:
+ *
+ *   @import "tailwindcss";
+ *   @import "./foundation/primitives.css";
+ *   @import "./foundation/semantic.css";
+ *   @import "./foundation/shadcn.css";
+ *   @import "./foundation/tailwind.css";
+ *
+ * Names avoid shadcn's own (`primary`, `secondary`, `muted`, `accent`), which mean something
+ * else there: text colours are `ink-*`, the brand colour is `brand`.
+ * Tailwind's default palette (gray-500, red-500…) fails the token check inside components.
+ */
+
+@theme inline {
+  --color-app: var(--bg-app);
+  --color-surface: var(--bg-surface);
+  --color-subtle: var(--bg-subtle);
+  --color-hover: var(--bg-hover);
+  --color-pressed: var(--bg-pressed);
+  --color-selected: var(--bg-selected);
+  --color-line: var(--border-default);
+  --color-line-strong: var(--border-strong);
+
+  --color-ink: var(--text-primary);
+  --color-ink-secondary: var(--text-secondary);
+  --color-ink-muted: var(--text-muted);
+  --color-ink-disabled: var(--text-disabled);
+
+  --color-action: var(--action-primary);
+  --color-action-text: var(--action-primary-text);
+  --color-brand: var(--action-accent);
+  --color-focus: var(--focus-ring);
+
+  --color-success: var(--status-success);
+  --color-success-bg: var(--status-success-bg);
+  --color-success-line: var(--status-success-border);
+  --color-warning: var(--status-warning);
+  --color-warning-bg: var(--status-warning-bg);
+  --color-warning-line: var(--status-warning-border);
+  --color-error: var(--status-error);
+  --color-error-bg: var(--status-error-bg);
+  --color-error-line: var(--status-error-border);
+  --color-running: var(--status-running);
+  --color-running-bg: var(--status-running-bg);
+  --color-running-line: var(--status-running-border);
+  --color-neutral: var(--status-neutral);
+  --color-neutral-bg: var(--status-neutral-bg);
+  --color-neutral-line: var(--status-neutral-border);
+
+  --font-ui: var(--family-ui);
+  --font-code: var(--family-code);
+
+  --text-meta: var(--size-meta);
+  --text-label: var(--size-label);
+  --text-body: var(--size-body);
+  --text-section: var(--size-section);
+  --text-title: var(--size-title);
+  --text-display: var(--size-display);
+
+  --radius-control: var(--shape-control);
+  --radius-card: var(--shape-card);
+  --radius-row: var(--shape-row);
+
+  --shadow-card: var(--elevation-card);
+  --shadow-popover: var(--elevation-popover);
+  --shadow-dialog: var(--elevation-dialog);
+}

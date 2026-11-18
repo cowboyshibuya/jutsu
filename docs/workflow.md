@@ -43,9 +43,16 @@ Why skills live in Git and rules live in Alabasta: [architecture.md](architectur
 
 ### Once per project
 
-1. Make sure the project has an `AGENTS.md` with at least: what the project is, the boundaries agents must not cross (migrations, access policies, billing, deploys), the check command (`bun run validate` or similar) and a glossary. `CLAUDE.md` can be one line: `@AGENTS.md`.
-2. Give it a `DESIGN.md` when it has an interface: the components to reuse, tokens, and any rule that differs from the taste jutsu (for example, if phones keep the delta figure).
-3. If the project has a shared UI package, name it in `AGENTS.md`; the router's first non-negotiable is "reuse before building".
+Run `/jutsu:setup-project`. It:
+
+1. reads the project (package manager, framework, Tailwind, shadcn, existing docs and tokens) and works on a branch;
+2. asks you, in one message, only what the repository cannot answer: what the product is, the accent and typefaces (or "decide later"), the boundaries, and anything that deliberately differs from the taste jutsu;
+3. installs the [foundation](../foundation/README.md) from the registry: tokens, the shadcn bridge, the token check, and the base blocks;
+4. writes `AGENTS.md` and `DESIGN.md` from the templates, adding only missing sections to files that exist;
+5. wires the token check into the project's checks (for an existing project with many raw values, it reports them and asks before gating);
+6. proves it with the project's checks and lists the open decisions.
+
+What you write yourself is only what is specific to the product: brand values, product blocks, and rules from that product's mistakes.
 
 ## Daily use
 
@@ -172,6 +179,7 @@ A new or changed jutsu is not done until it has reviewed real code. Every jutsu 
 - Router and five playbooks, from 289 of your Tomcabs messages.
 - Taste jutsu: explicit-titles, adaptive-density, sortable-tables, showcase, agent-ready-site.
 - Plugin and marketplace manifests that validate.
+- `setup-project` and the foundation registry: tokens (light and dark), shadcn bridge, token check, `PageHeader`, `Metric`, `EmptyState`, templates.
 
 ### Planned
 

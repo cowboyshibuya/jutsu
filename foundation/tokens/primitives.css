@@ -1,0 +1,94 @@
+/*
+ * Primitives: the raw scale. Every value in the product comes from here.
+ *
+ * For agents:
+ * - Take values from this file; never invent one (no 13.5px, no 10px gap, no new hex).
+ * - Components never use these directly. They use the semantic tokens in semantic.css.
+ * - A value marked `@decide` is not settled. Ask the person before using or changing it.
+ *   `node checks/check-tokens.mjs --decisions` lists them.
+ */
+
+:root {
+  /* Color: neutral scale */
+  --gray-0: #ffffff;
+  --gray-50: #fafafa;
+  --gray-100: #f4f4f5;
+  --gray-200: #e4e4e7;
+  --gray-300: #d4d4d8;
+  --gray-400: #a1a1aa;
+  --gray-500: #71717a;
+  --gray-600: #52525b;
+  --gray-700: #3f3f46;
+  --gray-800: #27272a;
+  --gray-900: #18181b;
+  --gray-950: #09090b;
+
+  /* Color: meaning. Used only through status and action tokens, never as decoration. */
+  --blue-500: #3b82f6;
+  --green-500: #22c55e;
+  --amber-500: #f59e0b;
+  --red-500: #ef4444;
+
+  /* @decide: the product's accent (brand) colour. Ask before choosing one. */
+  --accent-500: var(--blue-500);
+
+  /* Type */
+  /* @decide: the product's typefaces. */
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --text-xs: 12px;
+  --text-sm: 13px;
+  --text-base: 14px;
+  --text-lg: 16px;
+  --text-xl: 20px;
+  --text-2xl: 24px;
+  --text-3xl: 32px;
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --leading-tight: 1.25;
+  --leading-normal: 1.5;
+  --tracking-tight: -0.02em;
+
+  /* Spacing: a 4px grid */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+
+  /* Radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-full: 9999px;
+
+  /* Shadow */
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 12px rgb(0 0 0 / 0.08);
+  --shadow-lg: 0 12px 32px rgb(0 0 0 / 0.12);
+
+  /* Motion */
+  --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+  --duration-fast: 150ms;
+  --duration-normal: 200ms;
+  --duration-slow: 300ms;
+
+  /* Sizes */
+  --size-icon-sm: 14px;
+  --size-icon-md: 16px;
+  --size-control-sm: 32px;
+  --size-control-md: 36px;
+  --size-control-touch: 44px;
+  --width-content: 1200px;
+  --width-reading: 720px;
+
+  /* Layers */
+  --layer-sticky: 10;
+  --layer-dropdown: 20;
+  --layer-overlay: 40;
+  --layer-dialog: 50;
+  --layer-toast: 60;
+}

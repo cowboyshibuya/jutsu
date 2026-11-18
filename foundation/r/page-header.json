@@ -1,0 +1,28 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "page-header",
+  "type": "registry:block",
+  "title": "Page header",
+  "description": "The page's fact as its title, the page name as eyebrow, one action that collapses to an icon.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "utils",
+    "https://raw.githubusercontent.com/cowboyshibuya/jutsu/main/foundation/r/tokens.json"
+  ],
+  "files": [
+    {
+      "path": "blocks/page-header.tsx",
+      "type": "registry:block",
+      "target": "components/blocks/page-header.tsx",
+      "content": "import type { LucideIcon } from \"lucide-react\";\nimport type { ReactNode } from \"react\";\nimport { cn } from \"@/lib/utils\";\n\n/**\n * The page header. The title is the page's primary fact (\"42 shifts this week\"), not its name;\n * the name is the eyebrow, unless the app's breadcrumb already shows it. No description: the\n * subtitle is only for an exact custom date range or a consequence the reader cannot guess.\n * See the explicit-titles jutsu.\n */\nexport function PageHeader({\n  eyebrow,\n  title,\n  subtitle,\n  action,\n  children,\n  className,\n}: {\n  /** The page name, or a record's kind or reference. Omit when a breadcrumb already says it. */\n  eyebrow?: ReactNode;\n  /** The primary fact. Pass a skeleton while loading, never a zero. */\n  title: ReactNode;\n  /** Only an exact date range or a consequence the reader cannot guess. */\n  subtitle?: ReactNode;\n  /** One primary action at most; see PageHeaderAction. */\n  action?: ReactNode;\n  /** A period bar, tabs or filters that belong to the header. */\n  children?: ReactNode;\n  className?: string;\n}) {\n  return (\n    <header className={cn(\"flex flex-col gap-4 pb-6\", className)}>\n      <div className=\"flex items-start justify-between gap-4\">\n        <div className=\"min-w-0\">\n          {eyebrow ? (\n            <p className=\"mb-1 text-meta font-medium uppercase tracking-wider text-ink-muted\">{eyebrow}</p>\n          ) : null}\n          <h1 className=\"text-title font-semibold tracking-tight text-ink tabular-nums text-balance\">{title}</h1>\n          {subtitle ? <p className=\"mt-1 text-label text-ink-muted\">{subtitle}</p> : null}\n        </div>\n        {action ? <div className=\"shrink-0\">{action}</div> : null}\n      </div>\n      {children}\n    </header>\n  );\n}\n\n/**\n * The header's one primary action, collapsing as space shrinks: \"+ New note\" on wide screens,\n * \"+ New\" on medium, \"+\" on phones. The full label stays the accessible name and tooltip.\n */\nexport function PageHeaderAction({\n  label,\n  shortLabel,\n  icon: Icon,\n  onClick,\n  className,\n}: {\n  label: string;\n  shortLabel?: string;\n  icon: LucideIcon;\n  onClick?: () => void;\n  className?: string;\n}) {\n  return (\n    <button\n      type=\"button\"\n      onClick={onClick}\n      aria-label={label}\n      title={label}\n      className={cn(\n        \"inline-flex min-h-11 min-w-11 items-center justify-center gap-2 rounded-control bg-action px-3 text-label font-medium text-action-text sm:min-h-9 sm:min-w-9\",\n        \"outline-none focus-visible:ring-2 focus-visible:ring-focus active:scale-[0.97] motion-reduce:active:scale-100\",\n        className,\n      )}\n    >\n      <Icon className=\"size-4 shrink-0\" aria-hidden=\"true\" />\n      {shortLabel ? <span className=\"hidden sm:inline lg:hidden\">{shortLabel}</span> : null}\n      <span className={shortLabel ? \"hidden lg:inline\" : \"hidden sm:inline\"}>{label}</span>\n    </button>\n  );\n}\n"
+    },
+    {
+      "path": "blocks/page-header.md",
+      "type": "registry:file",
+      "target": "components/blocks/page-header.md",
+      "content": "# PageHeader\n\n**Use** at the top of every product page: lists, dashboards, records, settings.\n**Not for** sections inside a page (use a section heading) or marketing heroes.\n\n**Default**: `title` with the page's fact, `eyebrow` with the page name, no `subtitle`, at most one `PageHeaderAction`.\n\n| | Example |\n| --- | --- |\n| Good | `<PageHeader eyebrow=\"Shifts\" title=\"42 shifts this week\" action={<PageHeaderAction label=\"New shift\" shortLabel=\"New\" icon={Plus} />} />` |\n| Bad | `<PageHeader title=\"Shifts\" subtitle=\"View and manage all your shifts\" />` (the name as title, a description that repeats it) |\n\n| State | Behaviour |\n| --- | --- |\n| Loading | A title-sized skeleton in `title`; never \"0\" |\n| Zero | A real zero is a fact: \"No shifts this week\" |\n| Unavailable | \"—\" with the reason nearby, never \"0\" |\n| Tabs | Same eyebrow, action and height on every tab; only the title words change |\n| Narrow | The action collapses to \"+\"; the title wraps between the figure and the period, never inside the figure |\n"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "empty-state",
+  "type": "registry:block",
+  "title": "Empty state",
+  "description": "An icon, a title saying what will appear, and the next valid action.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "utils",
+    "https://raw.githubusercontent.com/cowboyshibuya/jutsu/main/foundation/r/tokens.json"
+  ],
+  "files": [
+    {
+      "path": "blocks/empty-state.tsx",
+      "type": "registry:block",
+      "target": "components/blocks/empty-state.tsx",
+      "content": "import type { LucideIcon } from \"lucide-react\";\nimport type { ReactNode } from \"react\";\nimport { cn } from \"@/lib/utils\";\n\n/**\n * An empty view: an icon, a title, and the next valid action. The title says what will appear\n * or what to do; it does not repeat a zero the page title already states. No looping or pulsing.\n */\nexport function EmptyState({\n  icon: Icon,\n  title,\n  action,\n  className,\n}: {\n  icon: LucideIcon;\n  /** \"Shifts you start appear here\", not \"No shifts\" under a title that already says it. */\n  title: string;\n  /** The next valid action, when there is one. */\n  action?: ReactNode;\n  className?: string;\n}) {\n  return (\n    <div\n      className={cn(\n        \"flex flex-col items-center justify-center gap-3 rounded-card border border-dashed border-line bg-subtle px-6 py-12 text-center\",\n        className,\n      )}\n    >\n      <Icon className=\"size-6 text-ink-muted\" aria-hidden=\"true\" />\n      <p className=\"max-w-sm text-body text-ink-secondary text-balance\">{title}</p>\n      {action ? <div className=\"mt-1\">{action}</div> : null}\n    </div>\n  );\n}\n"
+    },
+    {
+      "path": "blocks/empty-state.md",
+      "type": "registry:file",
+      "target": "components/blocks/empty-state.md",
+      "content": "# EmptyState\n\n**Use** when a list, table body or panel has nothing to show yet, or a search found nothing.\n**Not for** errors (use a banner with the recovery action) or loading (use a skeleton at the content's shape).\n\n**Default**: an icon, a title that says what will appear or what to do, and the next valid action.\n\n| | Example |\n| --- | --- |\n| Good | `<EmptyState icon={Car} title=\"Add a taxi to start recording shifts\" action={<Button>Add taxi</Button>} />` |\n| Bad | `<EmptyState icon={Inbox} title=\"No data\" />` under a title that already says \"No shifts\" |\n\n| State | Behaviour |\n| --- | --- |\n| No results from search | Title names the search and offers clearing it |\n| Inside a table | Headers stay above it |\n| Motion | None; it never loops or pulses |\n"
+    }
+  ]
+}

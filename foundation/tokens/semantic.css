@@ -1,0 +1,87 @@
+/*
+ * Semantic tokens: what a value is for, not what it looks like. Components use only these
+ * (directly or through the Tailwind names in tailwind.css). Each points back to a primitive.
+ *
+ * Light and dark live together through light-dark(): the first value is light, the second dark.
+ * The theme follows the system; set data-theme="light" or "dark" on <html> to force one.
+ *
+ * Colour carries meaning. Green, amber, red and blue appear only through the status tokens,
+ * for a real state (done, needs a look, failed, running), never to decorate.
+ */
+
+:root { color-scheme: light dark; }
+:root[data-theme="light"] { color-scheme: light; }
+:root[data-theme="dark"] { color-scheme: dark; }
+
+:root {
+  /* Surface */
+  --bg-app: light-dark(var(--gray-50), var(--gray-950));
+  --bg-surface: light-dark(var(--gray-0), var(--gray-900));
+  --bg-subtle: light-dark(var(--gray-100), var(--gray-800));
+  --bg-hover: light-dark(var(--gray-100), var(--gray-800));
+  --bg-pressed: light-dark(var(--gray-200), var(--gray-700));
+  --bg-selected: light-dark(var(--gray-100), var(--gray-800));
+  --border-default: light-dark(var(--gray-200), var(--gray-800));
+  --border-strong: light-dark(var(--gray-300), var(--gray-700));
+
+  /* Text */
+  --text-primary: light-dark(var(--gray-900), var(--gray-50));
+  --text-secondary: light-dark(var(--gray-700), var(--gray-300));
+  --text-muted: light-dark(var(--gray-500), var(--gray-400));
+  --text-disabled: light-dark(var(--gray-400), var(--gray-600));
+
+  /* Action: one primary per screen */
+  --action-primary: light-dark(var(--gray-900), var(--gray-50));
+  --action-primary-text: light-dark(var(--gray-0), var(--gray-900));
+  --action-accent: var(--accent-500);
+  --focus-ring: var(--blue-500);
+
+  /* Status: each tone is a set, so a badge, banner or dot never mixes its own */
+  --status-success: var(--green-500);
+  --status-success-bg: color-mix(in oklch, var(--green-500) 12%, transparent);
+  --status-success-border: color-mix(in oklch, var(--green-500) 30%, transparent);
+  --status-warning: var(--amber-500);
+  --status-warning-bg: color-mix(in oklch, var(--amber-500) 12%, transparent);
+  --status-warning-border: color-mix(in oklch, var(--amber-500) 30%, transparent);
+  --status-error: var(--red-500);
+  --status-error-bg: color-mix(in oklch, var(--red-500) 12%, transparent);
+  --status-error-border: color-mix(in oklch, var(--red-500) 30%, transparent);
+  --status-running: var(--blue-500);
+  --status-running-bg: color-mix(in oklch, var(--blue-500) 12%, transparent);
+  --status-running-border: color-mix(in oklch, var(--blue-500) 30%, transparent);
+  --status-neutral: var(--text-muted);
+  --status-neutral-bg: var(--bg-subtle);
+  --status-neutral-border: var(--border-default);
+
+  /* Type roles */
+  --family-ui: var(--font-sans);
+  --family-code: var(--font-mono);
+  --size-meta: var(--text-xs);
+  --size-label: var(--text-sm);
+  --size-body: var(--text-base);
+  --size-section: var(--text-lg);
+  --size-title: var(--text-2xl);
+  --size-display: var(--text-3xl);
+
+  /* Layout */
+  --gap-inline: var(--space-2);
+  --gap-stack: var(--space-4);
+  --gap-section: var(--space-8);
+  --padding-control: var(--space-3);
+  --padding-card: var(--space-4);
+  --padding-page: var(--space-8);
+  --padding-page-compact: var(--space-4);
+  --shape-control: var(--radius-full);
+  --shape-card: var(--radius-lg);
+  --shape-row: var(--radius-md);
+
+  /* Elevation */
+  --elevation-card: var(--shadow-sm);
+  --elevation-popover: var(--shadow-md);
+  --elevation-dialog: var(--shadow-lg);
+
+  /* Motion */
+  --motion-hover: var(--duration-fast) var(--ease-smooth);
+  --motion-enter: var(--duration-normal) var(--ease-smooth);
+  --motion-panel: var(--duration-slow) var(--ease-smooth);
+}

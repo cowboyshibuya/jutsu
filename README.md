@@ -11,11 +11,14 @@ Every skill here is a **jutsu**. On disk each one is a standard agent skill (`ju
 | Jutsu | Kind | What it does |
 | --- | --- | --- |
 | [`cowboy-mode`](jutsu/cowboy-mode/SKILL.md) | Workflow | The router. Restates the goal, picks a playbook, reuses before building, fixes patterns rather than instances, commits each verified unit on a work branch, proves the result. Five playbooks: feature-ui, bug-fix, ui-review, session-pickup, shipping. |
+| [`setup-project`](jutsu/setup-project/SKILL.md) | Workflow | Sets a project up the jutsu way: installs the foundation, writes AGENTS.md and DESIGN.md from templates without overwriting, wires the token check, and asks the product's open decisions. |
 | [`explicit-titles`](jutsu/explicit-titles/SKILL.md) | Taste | The title states the page's primary fact ("42 shifts this week"); the page name becomes the eyebrow; no description. |
 | [`adaptive-density`](jutsu/adaptive-density/SKILL.md) | Taste | Less noise as space shrinks, never less power: short labels, metric tiles that drop icons and turn deltas into a coloured arrow, "+ New note" → "+", filters behind one button. |
 | [`sortable-tables`](jutsu/sortable-tables/SKILL.md) | Taste | Every comparable column sorts, with a visible cue; empty values last both ways; paginated tables sort on the server; sort lives in the URL; ••• row actions. |
 | [`showcase`](jutsu/showcase/SKILL.md) | Taste | Product pages that sell by showing the real product: the app's own components on demo data, one-action demos, a composition per width, plain factual copy. |
 | [`agent-ready-site`](jutsu/agent-ready-site/SKILL.md) | Taste | A site for people and their assistants: one source of facts, llms.txt, structured data, "Ask AI" on every reading page, and quick starts written as prompts instead of install commands. |
+
+The [foundation](foundation/README.md) is the shared code the jutsu build with: design tokens (primitives, semantic, light and dark), a shadcn bridge, a token check that rejects raw values, and base blocks, served as a shadcn registry.
 
 Every taste jutsu has the same shape: hard rules, a gate (ordered questions), the rules, a **Never ship** self-check, what code cannot tell you, a preferred fix order, and a review format ending in **Block** or **Approve**.
 
