@@ -1,7 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry.json",
   "name": "foundation",
-  "homepage": "https://github.com/cowboyshibuya/jutsu/tree/main/foundation",
+  "homepage": "https://github.com/cowboyshibuya/jutsu/tree/main/foundations/ui",
   "items": [
     {
       "name": "tokens",

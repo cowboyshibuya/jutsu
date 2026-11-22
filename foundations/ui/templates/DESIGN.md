@@ -49,6 +49,6 @@ Values and patterns not settled yet. Agents ask before choosing; `node <path>/ch
 
 ## Differences from the jutsu
 
-Where this product deliberately differs from a taste jutsu, say so here, so agents follow the product and do not report it as a conflict.
+Where this product deliberately differs from a taste skill, say so here, so agents follow the product and do not report it as a conflict.
 
 - <e.g. phones keep the delta figure because …>

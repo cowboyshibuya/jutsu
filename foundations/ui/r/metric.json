@@ -1,0 +1,28 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "metric",
+  "type": "registry:block",
+  "title": "Metric",
+  "description": "A metric tile and grid: short label, icon on wide screens, arrow-only delta on phones.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "utils",
+    "https://raw.githubusercontent.com/cowboyshibuya/jutsu/main/foundations/ui/r/tokens.json"
+  ],
+  "files": [
+    {
+      "path": "blocks/metric.tsx",
+      "type": "registry:block",
+      "target": "components/blocks/metric.tsx",
+      "content": "import { ArrowDown, ArrowUp, type LucideIcon } from \"lucide-react\";\nimport type { ReactNode } from \"react\";\nimport { cn } from \"@/lib/utils\";\n\nexport type MetricDelta = {\n  /** The change as a fraction: 0.12 for +12%. */\n  value: number;\n  /** What it is compared with, in words: \"last month\". */\n  comparedTo: string;\n  /** True for costs and other figures where going down is good. */\n  inverted?: boolean;\n};\n\n/**\n * One metric tile. The label is the shortest noun the page allows (\"Total\", not \"Total users\").\n * Wide screens show the icon and the delta's figure; phones drop the icon and keep only the\n * delta's arrow in its colour, with the figure in the tooltip and accessible name. A tile with\n * a delta is exactly as tall as one without. See the adaptive-density skill.\n */\nexport function Metric({\n  label,\n  value,\n  icon: Icon,\n  delta,\n  className,\n}: {\n  label: string;\n  value: ReactNode;\n  icon?: LucideIcon;\n  /** Omit when there is no previous period. Never pass 0 for missing data. */\n  delta?: MetricDelta;\n  className?: string;\n}) {\n  return (\n    <div className={cn(\"min-w-0 rounded-card border border-line bg-surface p-4 shadow-card\", className)}>\n      <div className=\"flex items-center gap-2 text-label text-ink-muted\">\n        {Icon ? <Icon className=\"hidden size-4 shrink-0 sm:block\" aria-hidden=\"true\" /> : null}\n        <span className=\"truncate\">{label}</span>\n      </div>\n      <div className=\"mt-2 flex items-baseline gap-2\">\n        <span className=\"truncate text-title font-semibold tracking-tight text-ink tabular-nums\">{value}</span>\n        {delta ? <Delta {...delta} /> : null}\n      </div>\n    </div>\n  );\n}\n\nconst percent = new Intl.NumberFormat(undefined, { style: \"percent\", maximumFractionDigits: 1 });\n\nfunction Delta({ value, comparedTo, inverted = false }: MetricDelta) {\n  const up = value > 0;\n  const flat = value === 0;\n  const good = flat ? null : up !== inverted;\n  const Arrow = up ? ArrowUp : ArrowDown;\n  const figure = percent.format(Math.abs(value));\n  const name = flat ? `No change compared with ${comparedTo}` : `${up ? \"Up\" : \"Down\"} ${figure} compared with ${comparedTo}`;\n  return (\n    <span\n      role=\"img\"\n      aria-label={name}\n      title={name}\n      className={cn(\n        \"inline-flex shrink-0 items-center gap-0.5 text-meta font-medium tabular-nums\",\n        good === null ? \"text-neutral\" : good ? \"text-success\" : \"text-error\",\n      )}\n    >\n      {flat ? null : <Arrow className=\"size-3.5\" aria-hidden=\"true\" />}\n      <span className={cn(flat ? \"inline\" : \"hidden sm:inline\")} aria-hidden=\"true\">\n        {flat ? \"0%\" : figure}\n      </span>\n    </span>\n  );\n}\n\n/** Metric tiles: two per row on phones, up to four per row on wide screens. */\nexport function MetricGrid({ children, className }: { children: ReactNode; className?: string }) {\n  return <div className={cn(\"grid grid-cols-2 gap-3 xl:grid-cols-4\", className)}>{children}</div>;\n}\n"
+    },
+    {
+      "path": "blocks/metric.md",
+      "type": "registry:file",
+      "target": "components/blocks/metric.md",
+      "content": "# Metric and MetricGrid\n\n**Use** for a figure the page compares over time: revenue, counts, rates. Always inside a `MetricGrid`.\n**Not for** the page's primary fact (that is the `PageHeader` title) or rankings (use rows).\n\n**Default**: short `label`, `value` formatted for the locale, `icon` on wide screens, `delta` against the previous period of the same length.\n\n| | Example |\n| --- | --- |\n| Good | `<Metric label=\"Total\" value=\"1,284\" icon={Users} delta={{ value: 0.12, comparedTo: \"last month\" }} />` |\n| Bad | `<Metric label=\"Total users this period\" value=\"1284\" delta={{ value: 0, comparedTo: \"\" }} />` (label repeats the page, unformatted value, a fake 0% for missing data) |\n\n| State | Behaviour |\n| --- | --- |\n| Loading | A value-sized skeleton; the tile keeps its size |\n| No previous period | No `delta` at all |\n| Costs | `inverted: true`, so going down is green |\n| Narrow | Icon hidden; delta is the coloured arrow, its figure in the tooltip and accessible name |\n| Grid | Two per row on phones, up to four from `xl`; an odd last tile keeps its column |\n"
+    }
+  ]
+}

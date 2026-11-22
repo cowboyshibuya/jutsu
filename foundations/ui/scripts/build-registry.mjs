@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * Builds the shadcn registry: one JSON file per item in r/, with every file's content inlined,
- * plus r/registry.json as the index. Run from foundation/ after changing a token, block or check:
+ * plus r/registry.json as the index. Run from foundations/ui/ after changing a token, block or check:
  *
  *   node scripts/build-registry.mjs
  *
@@ -13,7 +13,7 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
-const base = (process.env.FOUNDATION_URL ?? "https://raw.githubusercontent.com/cowboyshibuya/jutsu/main/foundation/r").replace(/\/$/, "");
+const base = (process.env.FOUNDATION_URL ?? "https://raw.githubusercontent.com/cowboyshibuya/jutsu/main/foundations/ui/r").replace(/\/$/, "");
 const registry = JSON.parse(readFileSync(join(root, "registry.json"), "utf8"));
 const out = join(root, "r");
 mkdirSync(out, { recursive: true });

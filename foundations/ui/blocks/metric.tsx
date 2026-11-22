@@ -15,7 +15,7 @@ export type MetricDelta = {
  * One metric tile. The label is the shortest noun the page allows ("Total", not "Total users").
  * Wide screens show the icon and the delta's figure; phones drop the icon and keep only the
  * delta's arrow in its colour, with the figure in the tooltip and accessible name. A tile with
- * a delta is exactly as tall as one without. See the adaptive-density jutsu.
+ * a delta is exactly as tall as one without. See the adaptive-density skill.
  */
 export function Metric({
   label,

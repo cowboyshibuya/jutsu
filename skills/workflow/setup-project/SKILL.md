@@ -6,9 +6,9 @@ disable-model-invocation: true
 
 # Set up a project
 
-The method lives in the jutsu, the shared code in the foundation registry, and only the product's own decisions in the project. This jutsu installs the first two and asks for the third.
+The method lives in the skills, the shared code in the foundation registry, and only the product's own decisions in the project. This skill installs the first two and asks for the third.
 
-Templates are in `../../foundation/templates/` from this file. The registry is served from `FOUNDATION_URL` (default `https://raw.githubusercontent.com/cowboyshibuya/jutsu/main/foundation/r`); to test a local change, build it with `FOUNDATION_URL=http://127.0.0.1:4100/r node foundation/scripts/build-registry.mjs` and serve `foundation/` on that port (use `127.0.0.1`, not `localhost`, which can resolve to IPv6 and miss an IPv4-only server). Rebuild without `FOUNDATION_URL` before committing.
+Templates are in `../../../foundations/ui/templates/` from this file. The registry is served from `FOUNDATION_URL` (default `https://raw.githubusercontent.com/cowboyshibuya/jutsu/main/foundations/ui/r`); to test a local change, build it with `FOUNDATION_URL=http://127.0.0.1:4100/r node foundation/scripts/build-registry.mjs` and serve `foundation/` on that port (use `127.0.0.1`, not `localhost`, which can resolve to IPv6 and miss an IPv4-only server). Rebuild without `FOUNDATION_URL` before committing.
 
 ## Hard rules
 
@@ -24,7 +24,7 @@ Templates are in `../../foundation/templates/` from this file. The registry is s
    - what the product is and who uses it, in one or two sentences;
    - the accent colour and typefaces (or "decide later");
    - the boundaries agents must never cross without asking;
-   - anything that deliberately differs from the taste jutsu.
+   - anything that deliberately differs from the taste skills.
 3. **Install the foundation** with the project's package-manager runner (`bunx shadcn@latest`, `pnpm dlx shadcn@latest`, `npx shadcn@latest`):
    - `add <FOUNDATION_URL>/tokens.json` and `<FOUNDATION_URL>/check-tokens.json`;
    - the blocks the product needs: `page-header`, `metric`, `empty-state`.
@@ -43,4 +43,4 @@ For "update the foundation": re-add each installed item and review the diff befo
 
 ## Promoting back
 
-When a block is built the same way in two projects, propose moving it into `foundation/blocks/` with its `.md`, an entry in `foundation/registry.json`, and a rebuild of `r/`. A block used once stays in its project.
+When a block is built the same way in two projects, propose moving it into `foundations/ui/blocks/` with its `.md`, an entry in `foundations/ui/registry.json`, and a rebuild of `r/`. A block used once stays in its project.
