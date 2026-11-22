@@ -4,13 +4,43 @@
     "name": "cowboyshibuya"
   },
   "metadata": {
-    "description": "Jutsu: agent skills for building intuitive, minimal professional software."
+    "description": "Jutsu: my setup, foundations and agent skills, for how I work, what I build and what I write.",
+    "version": "0.2.0"
   },
   "plugins": [
     {
-      "name": "jutsu",
+      "name": "workflow",
       "source": "./",
-      "description": "Personal agent jutsu: a working-style router, playbooks and taste for professional product interfaces."
+      "strict": false,
+      "version": "0.2.0",
+      "description": "How the agent works: the cowboy-mode router with its playbooks, and setup-project.",
+      "skills": [
+        "./skills/workflow/cowboy-mode",
+        "./skills/workflow/setup-project"
+      ]
+    },
+    {
+      "name": "interface",
+      "source": "./",
+      "strict": false,
+      "version": "0.2.0",
+      "description": "Taste for quiet professional product interfaces: explicit titles, adaptive density, sortable tables.",
+      "skills": [
+        "./skills/interface/explicit-titles",
+        "./skills/interface/adaptive-density",
+        "./skills/interface/sortable-tables"
+      ]
+    },
+    {
+      "name": "web",
+      "source": "./",
+      "strict": false,
+      "version": "0.2.0",
+      "description": "Public sites: product pages that show the real product, and sites written for people and their AI assistants.",
+      "skills": [
+        "./skills/web/showcase",
+        "./skills/web/agent-ready-site"
+      ]
     }
   ]
 }

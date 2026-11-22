@@ -7,7 +7,7 @@ This is the operating manual: how the pieces fit, what to type, and how the syst
 ```
 ┌──────────────────────────── Git: this repository ─────────────────────────────┐
 │                                                                               │
-│   cowboy-mode (router)                    taste jutsu                         │
+│   workflow: cowboy-mode (router)          interface + web: taste skills       │
 │   ├─ playbooks/feature-ui                 ├─ explicit-titles                  │
 │   ├─ playbooks/bug-fix                    ├─ adaptive-density                 │
 │   │                                       ├─ sortable-tables                  │
@@ -28,8 +28,8 @@ This is the operating manual: how the pieces fit, what to type, and how the syst
 
 - **The router** (`cowboy-mode`) is how an agent works: its start-of-task routine, non-negotiables, principles, autonomy limits and reply style.
 - **Playbooks** are step lists for one kind of task. The router copies the matching one into the task list.
-- **Taste jutsu** are rule books for one area of the interface. They load on their own when a task touches that area, and every review uses their Never ship tables.
-- **The project's own files win.** `AGENTS.md`, `CLAUDE.md` and `DESIGN.md` override any jutsu. When they disagree, the agent follows the project and reports the conflict, so you decide which one changes.
+- **Taste skills** are rule books for one area of the interface. They load on their own when a task touches that area, and every review uses their Never ship tables.
+- **The project's own files win.** `AGENTS.md`, `CLAUDE.md` and `DESIGN.md` override any skill. When they disagree, the agent follows the project and reports the conflict, so you decide which one changes.
 - **Alabasta is optional.** When its MCP is connected and a task names an Alabasta task, the agent reads that task's context first and submits a resolution at the end. Without it, nothing changes.
 
 Why skills live in Git and rules live in Alabasta: [architecture.md](architecture.md).
@@ -38,16 +38,16 @@ Why skills live in Git and rules live in Alabasta: [architecture.md](architectur
 
 ### Once, on your machine
 
-1. Install the plugin (see the README). Check it loaded: the `/` menu lists `jutsu:cowboy-mode`.
+1. Install the plugins you want (see the README). Check they loaded: the `/` menu lists `workflow:cowboy-mode`.
 2. Optionally connect Alabasta: Alabasta → Workspace settings → Agent access, then paste the connect prompt into your agent.
 
 ### Once per project
 
-Run `/jutsu:setup-project`. It:
+Run `/workflow:setup-project`. It:
 
 1. reads the project (package manager, framework, Tailwind, shadcn, existing docs and tokens) and works on a branch;
-2. asks you, in one message, only what the repository cannot answer: what the product is, the accent and typefaces (or "decide later"), the boundaries, and anything that deliberately differs from the taste jutsu;
-3. installs the [foundation](../foundation/README.md) from the registry: tokens, the shadcn bridge, the token check, and the base blocks;
+2. asks you, in one message, only what the repository cannot answer: what the product is, the accent and typefaces (or "decide later"), the boundaries, and anything that deliberately differs from the taste skills;
+3. installs the [UI foundation](../foundations/ui/README.md) from the registry: tokens, the shadcn bridge, the token check, and the base blocks;
 4. writes `AGENTS.md` and `DESIGN.md` from the templates, adding only missing sections to files that exist;
 5. wires the token check into the project's checks (for an existing project with many raw values, it reports them and asks before gating);
 6. proves it with the project's checks and lists the open decisions.
@@ -59,7 +59,7 @@ What you write yourself is only what is specific to the product: brand values, p
 ### Start a task
 
 ```text
-/jutsu:cowboy-mode <what you want, in plain words>
+/workflow:cowboy-mode <what you want, in plain words>
 ```
 
 The agent then:
@@ -99,7 +99,7 @@ You get one findings table (Severity, Location, Before, After, Why), a list of w
 ### What the agent checks before it says "done"
 
 - The project's own checks (types, lint, tests, UI consistency).
-- Each taste jutsu's Never ship table, as a self-check.
+- Each taste skill's Never ship table, as a self-check.
 - On screen, when allowed: the narrowest and a desktop width, the longest language, loading and empty states. If it did not look, it says so.
 
 ## Making it better
@@ -109,7 +109,7 @@ The system improves from your corrections. The loop:
 ```
 you correct an agent ──▶ the correction repeats ──▶ mine it ──▶ encode it ──▶ test it on a real app
         ▲                                                                              │
-        └──────────────────────── gaps found go back into the jutsu ◀─────────────────┘
+        └──────────────────────── gaps found go back into the skill ◀─────────────────┘
 ```
 
 ### 1. Notice repeats
@@ -128,21 +128,22 @@ Ask an agent to read your recent sessions for a project and group your correctio
 | 2. A type | A `title` prop that requires the fact, not a free string |
 | 3. A check whose error names the fix | `ui:check` rejects a raw checkbox; Sparkles for AI fails the build |
 | 4. A test | The route test fails until a new page resolves its workspace |
-| 5. A rule | A line in a jutsu (universal) or an Alabasta rule (one project) |
+| 5. A rule | A line in a skill (universal) or an Alabasta rule (one project) |
 
-Universal habits go into a jutsu here. Project-only facts (a field name, a version command) become Alabasta rules for that project, emitted into its `AGENTS.md`.
+Universal habits go into a skill here. Project-only facts (a field name, a version command) become Alabasta rules for that project, emitted into its `AGENTS.md`.
 
 ### 4. Test it on a real app
 
-A new or changed jutsu is not done until it has reviewed real code. Every jutsu so far changed after its first real use:
+A new or changed skill is not done until it has been used on real work. Every skill so far changed after its first real use:
 
 - `explicit-titles` gained four rules from Alabasta (lists with no time scope, home pages, breadcrumb apps, two-tone titles), then three Never ship rows from looking at the result in the browser.
 - `agent-ready-site` gained two rows from Alabasta's routing and MCP endpoint.
 
-## Writing a new jutsu
+## Writing a new skill
 
-1. **Collect the rules first**: from your own words, a reference project (Tomcabs' `DESIGN.md` and `docs/standards.md` are the richest), and mined corrections.
-2. **Use the shape** every taste jutsu shares:
+1. **Pick its group** (see the README): `workflow` for how the agent works, `interface` and `web` for product taste, `docs` for documents the agent produces, `general` for any other kind of work. A skill lives at `skills/<group>/<name>/SKILL.md`. Shared code or templates that several skills need go in `foundations/<area>/`, not inside one skill.
+2. **Collect the rules first**: from your own words, a reference project (Tomcabs' `DESIGN.md` and `docs/standards.md` are the richest), and mined corrections.
+3. **Use the shape** for its kind. A taste skill (rules you review against) has:
 
    | Section | Purpose |
    | --- | --- |
@@ -156,30 +157,32 @@ A new or changed jutsu is not done until it has reviewed real code. Every jutsu 
    | Fixing: preferred order | Delete and simplify first |
    | Review output | Findings table, what passed, Block or Approve |
 
-3. **Keep it generic**: no project component names; examples may use real wording.
-4. **No em dashes**, plain sentences, one idea per sentence.
-5. **Validate and check the cost**:
+   A maker skill (it produces a file: a document, a page, a diagram) has a numbered workflow in `SKILL.md`, its long guidance in `references/`, templates and fonts in `assets/`, and a check in `scripts/` that must pass before the agent hands the file over. The check is the point: it turns "looks right" into a command that fails.
+
+4. **Keep it generic**: no project component names; examples may use real wording.
+5. **No em dashes**, plain sentences, one idea per sentence.
+6. **Validate and check the cost**:
 
    ```bash
    claude plugin validate .
    ```
 
    ```bash
-   claude --plugin-dir . plugin details jutsu
+   claude plugin details <group>@jutsu
    ```
 
-   The descriptions load into every session (about 1,000 tokens for six jutsu today); the body loads only when used (about 2–2.5k tokens each).
-6. **Add it** to the router's list of taste jutsu and to the README table.
-7. **Test it on a real app** before trusting it.
+   The descriptions load into every session (about 1,000 tokens for the seven skills today); the body loads only when used (about 2–2.5k tokens each).
+7. **Register it**: add its path to its group's plugin in `.claude-plugin/marketplace.json` (a new group gets a new plugin entry), add it to the README table, and, for a taste skill, to the router's list.
+8. **Test it on real work** before trusting it.
 
 ## Status
 
 ### Built
 
 - Router and five playbooks, from 289 of your Tomcabs messages.
-- Taste jutsu: explicit-titles, adaptive-density, sortable-tables, showcase, agent-ready-site.
-- Plugin and marketplace manifests that validate.
-- `setup-project` and the foundation registry: tokens (light and dark), shadcn bridge, token check, `PageHeader`, `Metric`, `EmptyState`, templates.
+- Taste skills: explicit-titles, adaptive-density, sortable-tables, showcase, agent-ready-site.
+- One marketplace, `jutsu`, with a plugin per group: `workflow`, `interface`, `web`.
+- `setup-project` and the UI foundation registry: tokens (light and dark), shadcn bridge, token check, `PageHeader`, `Metric`, `EmptyState`, templates.
 
 ### Planned
 
@@ -189,12 +192,13 @@ A new or changed jutsu is not done until it has reviewed real code. Every jutsu 
 | `status-badges` | Status as icon plus tooltip on one colour map; mined six times |
 | `quiet-interface` | The philosophy: fewer primary choices, power behind a simple surface; write last |
 | `edit-in-place` | Whatever starts an edit becomes the actions that end it |
-| `improve-interface` | Audit a whole app against the taste jutsu and write self-contained plans, or Alabasta tasks, for cheaper agents |
+| `improve-interface` | Audit a whole app against the taste skills and write self-contained plans, or Alabasta tasks, for cheaper agents |
 | `correct` / `reflect` | Turn the improvement loop above into commands |
 
-### Before publishing
+### Open
 
-- Initialise Git and create the GitHub repository.
-- Add a `LICENSE` file (the README says MIT).
-- Tighten the jutsu descriptions to lower the always-loaded cost.
-- Check whether `npx skills add` finds jutsu in the `jutsu/` folder; add a fallback if not.
+- Fill `skills/docs/` (a handbook skill is the first candidate) and `skills/general/`; each becomes a plugin when it has its first skill.
+- Move the machine setup into `setup/`.
+- Remove the frozen `foundation/r/` copy once no project installs from the old URL.
+- Tighten the skill descriptions to lower the always-loaded cost.
+- Check whether `npx skills add` finds skills nested in `skills/<group>/`; add a fallback if not.

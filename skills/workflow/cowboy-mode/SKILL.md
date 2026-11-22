@@ -6,7 +6,7 @@ disable-model-invocation: true
 
 # Cowboy mode
 
-Playbooks live in `playbooks/` beside this file. Taste jutsu (`explicit-titles`, `adaptive-density`, `sortable-tables`, `say-less`, `status-badges`, `quiet-interface`, `showcase` and `agent-ready-site` for public pages) apply whenever a step touches UI; use the ones installed and skip the rest without comment.
+Playbooks live in `playbooks/` beside this file. Taste skills (`explicit-titles`, `adaptive-density`, `sortable-tables`, `say-less`, `status-badges`, `quiet-interface`, `showcase` and `agent-ready-site` for public pages) apply whenever a step touches UI; use the ones installed and skip the rest without comment.
 
 The project's own instructions (`AGENTS.md`, `CLAUDE.md`, `DESIGN.md`) win over this file. Read their boundaries before the first edit.
 

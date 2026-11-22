@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
  * The page header. The title is the page's primary fact ("42 shifts this week"), not its name;
  * the name is the eyebrow, unless the app's breadcrumb already shows it. No description: the
  * subtitle is only for an exact custom date range or a consequence the reader cannot guess.
- * See the explicit-titles jutsu.
+ * See the explicit-titles skill.
  */
 export function PageHeader({
   eyebrow,
