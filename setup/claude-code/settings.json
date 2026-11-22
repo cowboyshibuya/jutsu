@@ -1,0 +1,15 @@
+{
+  "extraKnownMarketplaces": {
+    "jutsu": {
+      "source": {
+        "source": "github",
+        "repo": "cowboyshibuya/jutsu"
+      }
+    }
+  },
+  "enabledPlugins": {
+    "workflow@jutsu": true,
+    "interface@jutsu": true,
+    "web@jutsu": true
+  }
+}
